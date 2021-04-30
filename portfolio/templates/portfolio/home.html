@@ -1,0 +1,40 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+<h1 style="text-align: center; color: green;">Zin Min Htet's Portfolio</h1>
+{% load static %}
+<br>
+<img src="{% static 'portfolio/Gordon.jpg' %}" alt="Gordon"
+    style="margin-left: auto; margin-right: auto; width: 30%; display: block;">
+<hr>
+<h2 style="text-align: center; color: green;">Zin Min Htet's Projects</h2>
+<div class="container">
+    <div class="row row-cols-3 g-4">
+        {% for project in projects %}
+        {% if project.url %}
+        <div class="col">
+            <a href="{{ project.url }}" target="_blank" style="text-decoration: none;">
+                <div class="card">
+                    <img src="{{ project.image.url }}" alt="" width="400" class="card-img-top">
+                    <div class="card-body">
+                        <h2 class="card-title" style="text-align: center;">{{ project.title }}</h2>
+                        <p class="card-text">{{ project.description }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% else %}
+        <div class="col">
+            <div class="card">
+                <img src="{{ project.image.url }}" alt="" width="400" class="card-img-top">
+                <div class="card-body">
+                    <h2 class="card-title" style="text-align: center;">{{ project.title }}</h2>
+                    <p class="card-text">{{ project.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
